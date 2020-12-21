@@ -26,6 +26,8 @@ export PATH="/home/cluster/users/zvikah/tools/icewm/bin:$PATH"
 export EDITOR="/home/cluster/users/zvikah/tools/vim/bin/vim"
 export PS1="[\w]\\$ "
 
+export CDA='/home/cluster/users/zvikah'
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/users/studs/msc/zvikah/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
