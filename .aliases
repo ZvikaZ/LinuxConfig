@@ -19,3 +19,5 @@ alias bsub='qsub -q cs1.q -cwd -V '
 
 alias lp='export PS1="[\w]\\$ "'
 alias sp='export PS1="[\W]\\$ "'
+
+alias cls='clear'

@@ -1,0 +1,61 @@
+limit	core 0
+limit	coredump 0
+
+setenv PATH .:/usr/ucb:/usr/bin:~/bin:/bin:/usr/local/bin:/usr/bin/X11:/usr/sbin:/sbin:${PATH}
+setenv PATH ${PATH}:/usr/openwin/bin:/usr/local/GNU/bin:/usr/ccs/bin:/usr/bin
+
+
+set	filec
+set	autocorrect
+set	autoexpand
+set	autolist
+set     listlinks
+set     pushdsilent
+set     addsuffix
+set     matchbeep  = ambiguous
+set     symlinks   = expand
+set	savehist   = 100
+set	history    = 200
+set	correct    = cmd
+set     mail       = (1 ${HOME}/mail/mbox)
+set     prompt2    = "%B%m%b : %R%#"
+set     who        = "%B###  %U%n%u has %a %l from <%M> at %t%b"
+set     histfile   = ${HOME}/.config/historys/history."`hostname`"
+
+############### HOME CONF ###############
+setenv HOME ~
+setenv HOME_LIB ${HOME}/lib
+setenv HOME_BIN ${HOME}/bin
+setenv HOME_CONF ${HOME}/.config
+#########################################
+
+############### MISC CONF ################
+setenv EDITOR '/usr/bin/vim'
+setenv VISUAL $EDITOR
+setenv NNTPSERVER news.bgu.ac.il
+setenv CMAPSIZE 128
+setenv LD_LIBRARY_PATH /usr/lib:/usr/X11R6/lib:/usr/share/lib:/usr/openwin/lib:/usr/local/lib/X11:/usr/dt/lib/:/usr/local/lib:/usr/ucb/lib
+setenv MANPATH "/usr/local/man:/usr/lang/man:/usr/man:/usr/share/man:/usr/dt/man:/usr/X11R6/man:/usr/catman:/usr/share/catman:/usr/local/X11R6/man:/addons/perl/man"
+setenv SP_PATH /netfs/addons/sicstus3.7/lib/sicstus37_beta
+setenv MTVP_XIL_SCALING_MODE 2
+setenv MOZILLA_HOME /usr/local/netscape
+alias pine     '/usr/local/bin/pine -p $HOME/.config/pinerc \!*; deld ~/.pine-debug*'
+##########################################
+
+############### LOAD CONF ################
+source ${HOME_CONF}/aliases
+source ${HOME_CONF}/complete
+source ${HOME_CONF}/javarc
+##########################################
+
+##########################################
+if (`uname` != "IRIX*") setenv MANPATH /usr/local/man/:/usr/local/share/catman/:/usr/share/catman/:/usr/share/man/
+
+############## PROMPT CONF ###############
+set     prompt  = "%B%m%b %S%~%s %U%n%u%#%L"
+set     prompt  = "`whoami`-%B%m%b [%T]%{^[]1;%m :%~^G^[]2;%m :%~^G%}%B%~%b%#"
+##########################################
+
+setenv PATH ${PATH}:.:/usr/ucb:/usr/bin:~/bin:/bin:/usr/local/bin:/usr/bin/X11:/usr/sbin:/sbin
+setenv PATH ${PATH}:/usr/openwin/bin:/usr/local/GNU/bin:/usr/ccs/bin:/usr/bin
+if (`uname` == "Linux") setenv PATH /opt/kde3/bin:${PATH}
