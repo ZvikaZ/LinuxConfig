@@ -11,9 +11,9 @@ export XDG_DATA_DIRS="/home/cluster/users/zvikah/.linuxbrew/Homebrew/share:$XDG_
 #Z         . /etc/bashrc
 #Z fi
 
-
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
+# expand environment variable when used for directories
+# https://superuser.com/questions/604109/bash-variable-name-not-being-expanded-with-tab-completion
+shopt -s direxpand
 
 # User specific aliases and functions
 source ~/.aliases
@@ -25,6 +25,9 @@ export PATH="/home/cluster/users/zvikah/tools/icewm/bin:$PATH"
 
 export EDITOR="/home/cluster/users/zvikah/tools/vim/bin/vim"
 export PS1="[\w]\\$ "
+
+# actually, it affects only xfce-terminal tab headings
+export PROMPT_COMMAND='printf "\033]0;%s\007" "${PWD/#$HOME/~}"'
 
 export CDA='/home/cluster/users/zvikah'
 
