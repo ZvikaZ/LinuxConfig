@@ -1,0 +1,21 @@
+alias so='source'
+alias ls='ls -AF --color=auto'
+alias lt='ls -ltr'
+alias ll='ls -alF'
+
+alias pd='pushd'
+alias po='popd'
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+alias psa='ps -elf | grep zvikah'
+# alias md='mkdir \!*; cd \!*'
+
+alias cda='cd /home/cluster/users/zvikah'
+alias bsub_s='qsub -q sipper.q -cwd -V '
+alias bsub='qsub -q cs1.q -cwd -V '
+
+alias lp='export PS1="[\w]\\$ "'
+alias sp='export PS1="[\W]\\$ "'

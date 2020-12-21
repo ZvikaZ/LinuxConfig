@@ -1,0 +1,3 @@
+echo '.profile'
+
+source ~/.bashrc
