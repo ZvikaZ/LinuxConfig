@@ -1,0 +1,123 @@
+conda activate zvika_env
+
+
+Normal Package Manager - brew
+=============================
+conda install -c anaconda git curl
+# now we can follow https://joseph-long.com/writing/linuxbrew-with-ancient-git/
+brew install curl
+brew update
+
+GVIM compilation
+================
+brew install gtk+
+# note - I first tried gtk+3 - it installs, but vim configure doesn't find it
+./configure --prefix=/home/cluster/users/zvikah/local | tee configure.log
+# later, I managed to run with gtk+3 ; it looks nicer :-)
+# need to write explicitly in gui options (or however it was called)
+# read the log, make sure it found gtk
+make
+make install
+
+Beyond Compare
+==============
+download tar.gz
+complains about missing bz2 library
+but 'locate' finds it!
+simple soft link to bc/lib64/beyondcompare/ solves it
+
+VNC-Server
+==========
+
+tl;dr:
+just download 
+https://bintray.com/tigervnc/stable/tigervnc/1.10.1
+and run from there.
+(note - later version - 1.11.0 - seems to require root permission)
+
+long story:
+brew install tiger-vnc
+failed with 'attr'
+then run
+brew install -v attr
+log path is printed
+brew edit attr
+# get rid of 'lint' flag, and other strange flags
+until brew install attr is working
+
+then failed on 'brew install libprelude'
+'brew edit libprelude', following https://github.com/Homebrew/linuxbrew-core/pull/21756/files
+
+It's installed!
+Now I can run:
+x0vncserver
+but it's not good enough - it's not virtualized desktop, and seems to ignore ~/.vnc/xstartup
+there is's a 
+vncserver, not in $PATH - but it fails because of missing Xvnc
+
+therefore:
+brew install x11vnc
+it doesn't have Xvnc
+
+But I found it by just downloading
+https://bintray.com/tigervnc/stable/tigervnc/1.11.0
+
+I've soft linked its X11 to Brew's one - it continued a little, but then failed
+
+Tried running only downloaded, without using Brew - but it failed, with hard wired global paths
+
+
+The VNC is Empty
+================
+So, we need some sort of a Desktop, or just Windows Manager
+ vi ~/.vnc/xstartup
+
+# my attempts...  
+# metacity &   # default working, but almost useless
+# the next two are too spartan
+# /home/cluster/users/zvikah/temp/dwm-6.2/dwm &
+# /home/cluster/users/zvikah/tools/spectrwm/bin/spectrwm &
+
+#that's one is decent!
+# but tooks long time to gather all dependencies to build
+/home/cluster/users/zvikah/tools/icewm-2.0.0/bin/icewm-session
+xterm &   # or better terminal
+
+
+We need a good terminal
+=======================
+Most of them need vte, which is quite a headache to install
+however, `alacritty` is easier to install
+but it's not good enough for me...
+so, let's `brew install vte3` (the 3 is for GTK3)
+currently, I succeeded by going back to version 
+
+We need a good terminal
+=======================
+Most of them need vte, which is quite a headache to install
+however, `alacritty` is easier to install
+but it's not good enough for me...
+so, let's `brew install vte3` (the 3 stands for GTK3, it seems)
+but recent versions depends on some strange define that exists only in newer Linux kernel
+going back in local brew git to `vte3.whatever` that supplied 0.56.2 worked for me. Yeah!
+
+xfce-terminal
+=============
+I've chosen to try compile it.
+Initially, I tried to choose slightly olderv versions. But it was a waste of time.
+It worked with the greatest and latest :-)
+
+versions:
+xfce4-terminal-0.8.9.2/
+libxfce4ui-4.15.8/
+libxfce4util-4.15.6/
+xfconf-4.15.1/
+
+hacks:
+    export PKG_CONFIG_PATH=/home/cluster/users/zvikah/tools/xfce/lib/pkgconfig/
+    ./configure --prefix=/home/cluster/users/zvikah/tools/xfce
+
+    # to fix some vapi/gir error:
+    cd /home/cluster/users/zvikah/.linuxbrew/Homebrew/share/vala/vapi
+    ln -s /home/cluster/users/zvikah/tools/xfce/share/vala/vapi/libxfce4util-1.0.vapi
+

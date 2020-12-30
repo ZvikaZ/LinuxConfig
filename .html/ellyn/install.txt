@@ -1,0 +1,57 @@
+##### Installation instructions for https://github.com/EpistasisLab/ellyn
+- Modified from https://epistasislab.github.io/ellyn/ to match BGU CS usecase
+- Assuming python3.8
+- Modify 'zvika_env' to whatever suits you, in the following instructions
+
+### Create conda env
+conda create --name zvika_env
+#   environment location: /users/studs/msc/zvikah/miniconda3/envs/zvika_env
+conda activate zvika_env
+
+### Install some required python packages
+conda install scipy
+conda install scikit-learn
+conda install pandas
+conda install -c conda-forge update_checker
+
+### Install boost	(note - using a newer version, due to problems with 1.62)
+wget https://dl.bintray.com/boostorg/release/1.75.0/source/boost_1_75_0.tar.gz
+tar xzf boost_1_75_0.tar.gz
+cd boost_1_75_0 
+./bootstrap.sh --with-libraries=python --with-python-root=/users/studs/msc/zvikah/miniconda3/envs/zvika_env
+./b2 --with-python
+
+### Install eigen
+wget https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.gz
+tar xzf eigen-3.3.9.tar.gz
+
+### Install ellyn
+git clone https://github.com/EpistasisLab/ellyn.git
+cd ellyn/ellyn/ellen/
+rm Makefile
+wget https://www.cs.bgu.ac.il/~zvikah/ellyn/Makefile
+# edit Makefile, and modify 'zvika_env'
+make
+
+
+### Install DistanceClassifier
+cd ../../..
+git clone https://github.com/lacava/DistanceClassifier.git
+mv DistanceClassifier/DistanceClassifier/ ellyn/ellyn/
+cd ellyn/ellyn/
+
+
+### Verify installation
+python
+from ellyn import ellyn
+
+### How to use it in your program?
+Add in the beginning:
+
+import sys
+import os
+sys.path.append("/home/cluster/users/%s/ellyn/ellyn" % os.environ['USER'])
+from ellyn import ellyn
+
+# You can see example of it at https://www.cs.bgu.ac.il/~zvikah/ellyn/simplest.py
+
