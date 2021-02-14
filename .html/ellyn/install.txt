@@ -4,14 +4,11 @@
 - Modify 'zvika_env' to whatever suits you, in the following instructions
 
 ### Create conda env
-conda create --name zvika_env
+conda create --name zvika_env scipy scikit-learn pandas
 #   environment location: /users/studs/msc/zvikah/miniconda3/envs/zvika_env
 conda activate zvika_env
 
 ### Install some required python packages
-conda install scipy
-conda install scikit-learn
-conda install pandas
 conda install -c conda-forge update_checker
 
 ### Install boost	(note - using a newer version, due to problems with 1.62)

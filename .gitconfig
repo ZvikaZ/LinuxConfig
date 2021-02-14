@@ -1,2 +1,5 @@
 [http]
 	sslVerify = false
+[user]
+	name = Zvika Haramaty
+	email = a@a.com
