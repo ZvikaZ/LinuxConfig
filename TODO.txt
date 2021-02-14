@@ -1,0 +1,17 @@
+- autocomplete
+- beautify git (colors, aliases, diff)
+- icewm:
+    learn shortcuts
+    improve monitors at toolbar
+- make 'md' function
+- tkdiff: why is it ugly? maybe I'm missing something?
+- fonts: is it possible to install ttf-mscorefonts-installer ?
+    I've tried some combination of:
+    https://gist.github.com/lightonphiri/5811226a1fba0b3df3be73ff2d5b351c
+    actually, mainly this (the second part!):
+    http://tsengf.blogspot.com/2012/03/install-new-fonts-in-linux-without-root.html
+    didn't work with https://fonts.google.com/specimen/JetBrains+Mono
+    but maybe will work with other fonts?
+    should try mscorefonts, maybe it'd be better
+    it appears that we *have* ttmkfdir
+- mail? sending? the envelope in the corner?
